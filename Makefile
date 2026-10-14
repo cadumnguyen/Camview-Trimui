@@ -6,7 +6,7 @@ ifeq ($(SDLFLAGS),)
 SDLFLAGS := -lSDL2
 endif
 
-camview: main.c
+camview: main.c font8x8_basic.h
 	$(CC) -O2 -I$(FF)/include -o camview main.c $(SDLFLAGS) -L$(FF)/lib \
 		-lavformat -lavcodec -lswscale -lswresample -lavutil -lpthread -lm
 
