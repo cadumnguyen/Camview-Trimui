@@ -10,7 +10,7 @@ jobs:
       - name: Build FFmpeg + CamView in tg5040 toolchain
         run: |
           docker run --rm -v "$PWD":/root/workspace ghcr.io/loveretro/tg5040-toolchain:latest \
-            /bin/bash -c "cd /root/workspace && ./build_ffmpeg.sh && make clean && make && file camview"
+            /bin/bash -c "cd /root/workspace && bash ./build_ffmpeg.sh && make clean && make && file camview"
           mkdir -p out/CamView && cp camview launch.sh config.json nvr.conf out/CamView/
       - uses: actions/upload-artifact@v4
         with:
