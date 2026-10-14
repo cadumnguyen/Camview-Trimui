@@ -1,0 +1,7 @@
+{
+  "label": "CamView",
+  "icon": "",
+  "iconsel": "",
+  "launch": "launch.sh",
+  "description": "Xem camera qua mang (MJPEG)"
+}
