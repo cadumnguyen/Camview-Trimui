@@ -1,0 +1,18 @@
+name: build-tg5040
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get FFmpeg source
+        run: git clone --depth 1 --branch n6.1.1 https://github.com/FFmpeg/FFmpeg.git
+      - name: Build FFmpeg + CamView in tg5040 toolchain
+        run: |
+          docker run --rm -v "$PWD":/root/workspace ghcr.io/loveretro/tg5040-toolchain:latest \
+            /bin/bash -c "cd /root/workspace && ./build_ffmpeg.sh && make clean && make && file camview"
+          mkdir -p out/CamView && cp camview launch.sh config.json nvr.conf out/CamView/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CamView-tg5040
+          path: out
